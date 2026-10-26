@@ -1,0 +1,57 @@
+{
+  "name": "dshm-boot-rescue",
+  "version": "1.1.0",
+  "description": "DSHM（HarmonyOS DeepSeek Harness）安全中心：启动救援 + 救援快照/回滚 + 完整备份/校验/导入预览/全新同版本实例恢复。纯宿主插件，零第三方运行依赖、零静态 inject、无 dsh.client。",
+  "private": false,
+  "type": "module",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "author": "dshm-boot-rescue contributors",
+  "dependencies": {},
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "dshm",
+    "harmonyos",
+    "plugin-recovery",
+    "backup",
+    "restore",
+    "safe-mode"
+  ],
+  "files": [
+    "lib/index.js",
+    "lib/rescue.js",
+    "lib/backup-service.js",
+    "lib/backup.js",
+    "lib/restore.js",
+    "lib/zip.js",
+    "lib/format.js",
+    "lib/util.js",
+    "lib/coexistence.js",
+    "lib/coexistence-policy.json",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huangshou1/dshm-boot-rescue-plugin.git"
+  }
+}
