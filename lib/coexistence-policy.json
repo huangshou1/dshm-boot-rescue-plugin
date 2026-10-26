@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "description": "旧 dshm-backup 插件共存状态机策略（运行时读取；修改必须同步 lib/coexistence.js 与测试）",
+  "states": {
+    "absent": {
+      "writeAllowed": true,
+      "label": "未检测到旧备份插件",
+      "reason": "未检测到旧 dshm-backup 插件，备份写入可用。"
+    },
+    "enabled": {
+      "writeAllowed": false,
+      "label": "旧备份插件已安装并启用（共存只读）",
+      "reason": "检测到旧备份插件 dshm-backup 已安装并启用。为避免两套备份状态/轮换/锁互相覆盖，备份写入处于共存只读模式：可以只读列出、校验和预览既有备份；新建备份、紧急备份、基线备份、恢复、轮换与备份目录写入全部禁用。不会自动停用或卸载旧插件。请手动移除旧 dshm-backup 插件并冷重启应用后再评估备份写入。"
+    },
+    "disabled": {
+      "writeAllowed": false,
+      "label": "旧备份插件仍安装（已停用，共存只读）",
+      "reason": "检测到旧备份插件 dshm-backup 仍安装在 profile 中（当前为停用状态）。在旧插件未移除前，备份写入保持共存只读，避免旧数据/状态目录被两套实现同时写入。请手动移除旧插件并冷重启后再评估。"
+    },
+    "registered-unmounted": {
+      "writeAllowed": false,
+      "label": "旧备份插件已登记但未挂载（共存只读）",
+      "reason": "profile 中仍登记了 dshm-backup，但当前 loader 无法确认其挂载状态。按 fail closed 处理：备份写入保持共存只读。请手动移除旧插件并冷重启后再评估。"
+    },
+    "unknown": {
+      "writeAllowed": false,
+      "label": "旧备份插件状态未知（fail closed）",
+      "reason": "无法确认旧备份插件 dshm-backup 的安装/启用状态（profile 或 loader 不可用）。按 fail closed 处理：备份写入保持共存只读，不假设可以并发写。"
+    }
+  }
+}
