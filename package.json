@@ -33,7 +33,9 @@
     "lib/coexistence-policy.json",
     "lib/client.js",
     "cordis.patch.yml",
-    "README.md"
+    "README.md",
+    "docs/DESIGN.md",
+    "docs/MIGRATION.md"
   ],
   "exports": {
     ".": {
