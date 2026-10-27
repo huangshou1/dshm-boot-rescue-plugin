@@ -6,7 +6,7 @@ DSHM（HarmonyOS / DeepSeek Harness）安全中心插件：把启动救援、备
 
 - 版本：**1.1.0 RC**
 - 状态：**不是 stable 版本**
-- 当前 RC tag：`v1.1.0-rc.4`
+- 当前 RC tag：`v1.1.0-rc.6`
 
 ## 功能
 
@@ -16,7 +16,9 @@ DSHM（HarmonyOS / DeepSeek Harness）安全中心插件：把启动救援、备
 - 启动失败页救援入口（由 Host `webServer.tapIndex` 注入），含“先紧急备份再救援”区域；
 - 备份/恢复任务卡片显示真实进度和结果；停用/回滚/校验/预览使用不确定进度；
 - 状态页提供普通用户可读的运行摘要和使用注意事项；
-- 备份创建、只读列表、完整性校验与导入预览；
+- 备份/恢复页参考旧 dshm-backup v0.1.8：服务状态、目录复制、基线/最近手动、最多 20 条列表、验证/预览/两阶段恢复；
+- 手动备份与紧急备份不使用原生 confirm，失败页 emergency 使用内联两阶段确认；
+- 手动备份、紧急备份、恢复任务显示真实任务卡；
 - 旧备份插件共存只读；
 - 全新、同核心版本实例的恢复预览与恢复入口（默认拒绝非全新目标）。
 
@@ -25,7 +27,7 @@ DSHM（HarmonyOS / DeepSeek Harness）安全中心插件：把启动救援、备
 使用固定 tag，不使用浮动 `main`：
 
 ```text
-github:huangshou1/dshm-boot-rescue-plugin#v1.1.0-rc.4
+github:huangshou1/dshm-boot-rescue-plugin#v1.1.0-rc.6
 ```
 
 ## 使用
